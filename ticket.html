@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coding conf</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <img class="circle" src="pattern-circle.svg" alt="">
+        <img class="lines" src="pattern-lines.svg" alt="">
+        <img src="pattern-squiggly-line-bottom-desktop.svg" alt="" class="onelent">
+        <img src="pattern-squiggly-line-top.svg" alt="" class="twolent">
+    </div>
+
+    <div class="main">
+
+        <header>
+            <img src="logo-full.svg" alt="">
+        </header>
+
+        <h1>Congrats, <span class="name" id="display-full-name">You</span>!</h1>
+        <h1 style="margin-top: -15px;">Your ticket is ready.</h1></h1>
+        <p style="margin-top: -10px;">We've emailed your ticket to <span id="display-email-address" style="color: #e16151;"></span> and will send updates in the run up to the event.</p>
+
+        <div class="card">
+            <img src="pattern-ticket.svg" alt="">
+            <p class="number">#016N9</p>
+            <img class="logo-ticket" src="logo-full.svg" alt="">
+            <p class="data">Jan 31, 2025</p>
+            <img class="img-avatar" id="avatar-image" alt="Uploaded Avatar">
+            <h3 class="nm"><span id="display-full-name-ti">name</span></h3>
+            <p class="gthb"><img class="gthimg" src="icon-github.svg" alt=""><span id="display-github-username"></span></p>
+        </div>
+
+    </div>
+
+
+    <script>
+        const fullName = localStorage.getItem('fullName');
+        const emailAddress = localStorage.getItem('emailAddress');
+        const githubUsername = localStorage.getItem('githubUsername');
+        const avatarImage = localStorage.getItem('avatarImage');
+
+        document.getElementById('display-full-name').textContent = fullName || 'N/A';
+        document.getElementById('display-full-name-ti').textContent = fullName || 'N/A';
+        document.getElementById('display-email-address').textContent = emailAddress || 'N/A';
+        document.getElementById('display-github-username').textContent = githubUsername || 'N/A';
+
+        if (avatarImage) {
+            document.getElementById('avatar-image').src = avatarImage;
+        } else {
+            document.getElementById('avatar-container').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coding conf</title>
+    <link rel="stylesheet" href="styles-main.css">
+</head>
+<body>
+    <div class="background">
+        <img class="circle" src="pattern-circle.svg" alt="">
+        <img class="lines" src="pattern-lines.svg" alt="">
+        <img src="pattern-squiggly-line-bottom-desktop.svg" alt="" class="onelent">
+        <img src="pattern-squiggly-line-top.svg" alt="" class="twolent">
+    </div>
+
+    <div class="main">
+
+        <header>
+            <img src="logo-full.svg" alt="">
+        </header>
+
+        <h1>Your Journey to Coding Conf</h1>
+        <h1 style="margin-top: -15px;">2025 Starts Here!</h1></h1>
+        <p style="margin-top: -10px;">Secure your spot at next year's biggest coding conference.</p>
+
+        <form>
+
+            <div class="avatar">
+                <p class="text-upload">Upload Avatar</p>
+                <input type="file" id="file-input" accept="image/*" required>
+                <label style="margin-top: -10px;" for="file-input" required>
+                    <div class="upload">
+                        <img src="icon-upload.svg" alt="">
+                    </div>
+                    <p style="margin-bottom: 5px; text-align: center;">Drag and drop or click to upload</p>
+                </label>
+            </div>
+
+            <p class="text-upload">Yur full name</p>
+            <input id="full-name" style="margin-top: -10px;" type="text" required>
+
+            <p class="text-upload">Email Adress</p>
+            <input id="email-address"  placeholder="example@gmail.com" style="margin-top: -10px;" type="email" required>
+
+            <p class="text-upload">Github usernm</p>
+            <input id="github-username" placeholder="@yourusername" style="margin-top: -10px;" type="username" required>
+            
+            <br>
+            <input id="submit-btn" style="margin-top: 20px; margin-bottom: 30px;" type="submit"  value="Generate my ticket">
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        if (img.width !== img.height) {
+                            event.target.value = '';
+                        } else {
+                            // Сохраняем изображение в LocalStorage
+                            localStorage.setItem('avatarImage', e.target.result);
+                        }
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное действие формы
+            
+            // Получаем значения полей ввода
+            const fullName = document.getElementById('full-name').value.trim();
+            const emailAddress = document.getElementById('email-address').value.trim();
+            const githubUsername = document.getElementById('github-username').value.trim();
+    
+            // Проверяем, что все поля заполнены
+            if (!fullName || !emailAddress || !githubUsername) {
+                return;
+            }
+    
+            // Сохраняем данные в LocalStorage
+            localStorage.setItem('fullName', fullName);
+            localStorage.setItem('emailAddress', emailAddress);
+            localStorage.setItem('githubUsername', githubUsername);
+    
+            // Перенаправляем на ticket.html
+            window.location.href = 'ticket.html';
+        });
+    </script>
+    
+</body>
+</html>
